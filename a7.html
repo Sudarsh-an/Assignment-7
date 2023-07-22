@@ -1,97 +1,95 @@
 <html>
-	<font size="8" color="green">Final test lab</font><br><br>
-	Number of rows: <input type="text" id="t1" /><br><br>
-	Number of cols: <input type="text" id="t2" /><br><br>
-	
-	<button id="b1" onclick="generateTable()">Generate Table</button><br><br>
-	
-	<button id="b2" onclick="addColumn()">Add Column</button>
-	
-	<button id="b3" onclick="addRow()">Add Row</button>
-		
-	<script language="javascript">
-		
-		//Your code goes here
-		//Generate table button element
-		let genTable = document.getElementById("b1");
-		//Getting the rows value given user
-		let rows = document.getElementById("t1");
-		let rowValue = Number(rows.value);
-		//Getting the VColumns value given user
-		let columns = document.getElementById("t2");
-		let colValue = Number(columns.value);
-		//Creating table element
-		let table = document.createElement("table");
-		//Setting id attribute of table element
-		table.setAttribute("id", "tab");
-		//Creating tbody element
-		let tbody = document.createElement("tbody");
+<font size="8" color="green">Final test lab</font><br><br>
+Number of rows: <input type="text" id="t1" /><br><br>
+Number of cols: <input type="text" id="t2" /><br><br>
 
-	
+<button id="b1" onclick="generateTable()">Generate Table</button><br><br>
+
+<button id="b2" onclick="addColumn()">Add Column</button>
+
+<button id="b3" onclick="addRow()">Add Row</button>
+
+<script language="javascript">
+
+	//Your code goes here
+	//Generate table button element
+	let genTable = document.getElementById("b1");
+	//Getting the rows value given user
+	let rows = document.getElementById("t1");
+	let rowValue = Number(rows.value);
+	//Getting the VColumns value given user
+	let columns = document.getElementById("t2");
+	let colValue = Number(columns.value);
+	//Creating table element
+	let table = document.createElement("table");
+	//Setting id attribute of table element
+	table.setAttribute("id", "tab");
+	//Creating tbody element
+	let tbody = document.createElement("tbody");
 
 
-		function generateTable(){
-			//rows.remove();
-			//columns.remove();
-			rowValue = Number(rows.value);
-			colValue = Number(columns.value);
 
-			//Alerting user to enter row or column values if not provided
-			if(rowValue == '' || colValue == ''){
-				alert("Please enter the values") 
-			}
 
-			console.log("Rows: ", rowValue , "Columns: ", colValue)
+	function generateTable() {
+		rowValue = Number(rows.value);
+		colValue = Number(columns.value);
 
-			for(let i = 1; i <= rowValue; i++){
-				let tr = document.createElement("tr");
-				for(let j = 1; j <= colValue; j++){
-					let td = document.createElement("td");
-					 td.innerText = `${i}, ${j}`;
-					 td.style.padding = "2px";
-					 tr.appendChild(td);
-				}
-				tbody.appendChild(tr);
-			}
-			table.append(tbody)
-			table.setAttribute("border",1)
-			document.body.appendChild(table);
-			
-			//Hiding input elements after generating table
-			document.getElementById("t1").style.display = "none";
-        	document.getElementById("t2").style.display = "none";
-
+		//Alerting user to enter row or column values if not provided
+		if (rowValue == '' || colValue == '') {
+			alert("Please enter the values")
 		}
 
+		console.log("Rows: ", rowValue, "Columns: ", colValue)
 
-		function addRow(){
-			let table = document.getElementById("tab")
-			newRow = table.insertRow()
-			console.log("Rows: ", rowValue , "Columns: ", colValue)
-			rowValue += 1
-			for( let j = 1; j <= colValue; j++ ){
-				let newRowCell = newRow.insertCell()
-				newRowCell.innerText = `${rowValue},${j}`
-				newRowCell.style.padding = "2px";
-
+		for (let i = 1; i <= rowValue; i++) {
+			let tr = document.createElement("tr");
+			for (let j = 1; j <= colValue; j++) {
+				let td = document.createElement("td");
+				td.innerText = `${i}, ${j}`;
+				td.style.padding = "2px";
+				tr.appendChild(td);
 			}
+			tbody.appendChild(tr);
+		}
+		table.append(tbody)
+		table.setAttribute("border", 1)
+		document.body.appendChild(table);
+
+		//Hiding input elements after generating table
+		document.getElementById("t1").style.display = "none";
+		document.getElementById("t2").style.display = "none";
+
+	}
+
+
+	function addRow() {
+		let table = document.getElementById("tab")
+		newRow = table.insertRow()
+		console.log("Rows: ", rowValue, "Columns: ", colValue)
+		rowValue += 1
+		for (let j = 1; j <= colValue; j++) {
+			let newRowCell = newRow.insertCell()
+			newRowCell.innerText = `${rowValue},${j}`
+			newRowCell.style.padding = "2px";
+
+		}
+	}
+
+	function addColumn() {
+		let tab = document.getElementById("tab")
+		colValue += 1
+
+		for (let i = 0; i <= rowValue + 1; i++) {
+			let td = document.createElement("td")
+			let text = document.createTextNode(`${i + 1}, ${colValue}`)
+			td.appendChild(text);
+			tab.rows[i].appendChild(td);
 		}
 
-		function addColumn(){
-			let tab = document.getElementById("tab")
-			colValue += 1
-
-			for(let i = 0; i <= rowValue+1; i++){
-				let td = document.createElement("td")
-				let text = document.createTextNode(`${i+1}, ${colValue}`)
-				td.appendChild(text);
-				tab.rows[i].appendChild(td);
-			}
-
-		}
+	}
 
 
-	
-	</script>
-	
+
+</script>
+
 </html>
